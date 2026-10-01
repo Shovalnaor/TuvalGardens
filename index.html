@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ירוק עד | תכנון, הקמה ועיצוב גינות יוקרה</title>
+  <meta name="description" content="הופכים את החצר לפינה האהובה עליכם בבית. תכנון והקמת גינות, דשא סינתטי, דקים, תאורת גן ומערכות השקיה מתקדמות.">
+
+  <!-- Google Fonts: Assistant & Heebo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind Custom Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Assistant', 'sans-serif'],
+            heading: ['Heebo', 'sans-serif'],
+          },
+          colors: {
+            forest: {
+              DEFAULT: '#1c3d2f',
+              dark: '#132c21',
+              light: '#2a5341',
+              soft: '#e9f1ed'
+            },
+            terracotta: {
+              DEFAULT: '#d9683e',
+              dark: '#be542c',
+              light: '#fdf2ec'
+            },
+            sand: {
+              DEFAULT: '#f9f8f4',
+              dark: '#edeae1',
+              muted: '#717568'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #f9f8f4;
+      color: #272c29;
+      font-family: 'Assistant', sans-serif;
+    }
+    
+    /* Before/After slider drag handle & overlay */
+    .ba-container {
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+    .ba-slider-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: #ffffff;
+      cursor: ew-resize;
+      z-index: 20;
+    }
+    .ba-handle-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      background: #1c3d2f;
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid white;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body class="bg-sand antialiased selection:bg-forest selection:text-white">
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 bg-sand/90 backdrop-blur-md border-b border-sand-dark/60 transition-all duration-300 shadow-sm" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo & Branding -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-11 h-11 rounded-2xl bg-forest flex items-center justify-center text-white shadow-md shadow-forest/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="sprout" class="w-6 h-6 text-emerald-300"></i>
+          </div>
+          <div>
+            <span class="block text-2xl font-black text-forest font-heading tracking-tight leading-tight">ירוק עד</span>
+            <span class="block text-xs font-semibold text-terracotta tracking-wider">תכנון ופיתוח נוף יוקרתי</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-8 text-base font-semibold text-forest/90">
+          <a href="#about" class="hover:text-terracotta transition-colors">מי אנחנו</a>
+          <a href="#before-after" class="hover:text-terracotta transition-colors">לפני ואחרי</a>
+          <a href="#gallery" class="hover:text-terracotta transition-colors">פרויקטים</a>
+          <a href="#services" class="hover:text-terracotta transition-colors">שירותים</a>
+          <a href="#process" class="hover:text-terracotta transition-colors">שלבי עבודה</a>
+          <a href="#testimonials" class="hover:text-terracotta transition-colors">המלצות</a>
+        </nav>
+
+        <!-- CTA Action Button -->
+        <div class="hidden sm:flex items-center gap-3">
+          <a href="tel:0501234567" class="flex items-center gap-2 text-forest font-bold text-sm px-3 py-2 rounded-lg hover:bg-forest/5 transition-colors">
+            <i data-lucide="phone-call" class="w-4 h-4 text-forest"></i>
+            <span>050-123-4567</span>
+          </a>
+          <a href="#contact" class="bg-terracotta hover:bg-terracotta-dark text-white px-5 py-2.5 rounded-full font-bold shadow-md shadow-terracotta/20 hover:shadow-lg transition-all text-sm flex items-center gap-2">
+            <span>הצעת מחיר מהירה</span>
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Trigger -->
+        <button id="mobileMenuBtn" aria-label="פתח תפריט" class="md:hidden p-2 rounded-xl text-forest hover:bg-forest/5 focus:outline-none">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden bg-sand border-b border-sand-dark px-6 py-5 space-y-4 shadow-xl">
+      <nav class="flex flex-col space-y-3 font-semibold text-lg text-forest">
+        <a href="#about" class="mobile-nav-link hover:text-terracotta py-1">מי אנחנו</a>
+        <a href="#before-after" class="mobile-nav-link hover:text-terracotta py-1">מהפך לפני ואחרי</a>
+        <a href="#gallery" class="mobile-nav-link hover:text-terracotta py-1">גלריית פרויקטים</a>
+        <a href="#services" class="mobile-nav-link hover:text-terracotta py-1">השירותים שלנו</a>
+        <a href="#process" class="mobile-nav-link hover:text-terracotta py-1">איך זה עובד</a>
+        <a href="#testimonials" class="mobile-nav-link hover:text-terracotta py-1">לקוחות ממליצים</a>
+        <a href="#contact" class="mobile-nav-link hover:text-terracotta py-1">צור קשר</a>
+      </nav>
+      <div class="pt-4 border-t border-sand-dark/60 flex flex-col gap-3">
+        <a href="tel:0501234567" class="w-full text-center py-2.5 font-bold text-forest border border-forest/30 rounded-xl flex items-center justify-center gap-2">
+          <i data-lucide="phone" class="w-4 h-4"></i> 050-123-4567
+        </a>
+        <a href="#contact" class="w-full text-center py-3 bg-terracotta text-white font-bold rounded-xl shadow-md">
+          תיאום סיור שטח חינם
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-forest-dark text-white py-16 lg:py-24">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=2000&q=80" 
+        alt="גינה יוקרתית מעוצבת" 
+        class="w-full h-full object-cover object-center opacity-30 transform scale-105 duration-1000 ease-out"
+        id="heroBg"
+      >
+      <div class="absolute inset-0 bg-gradient-to-t from-forest-dark via-forest-dark/70 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <!-- Trust Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-forest-light/60 border border-emerald-500/30 text-emerald-200 text-sm font-semibold mb-6 backdrop-blur-sm animate-pulse">
+        <i data-lucide="award" class="w-4 h-4 text-emerald-400"></i>
+        <span>מעל 15 שנות מומחיות בתכנון והקמת גינות יוקרה</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-heading leading-tight tracking-tight mb-6">
+        הופכים את החצר שלכם <br class="hidden sm:inline">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-amber-200 to-emerald-200">
+          לפינה האהובה ביותר בבית
+        </span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-lg sm:text-xl md:text-2xl text-sand-dark/90 font-normal max-w-3xl mx-auto mb-10 leading-relaxed">
+        תכנון אדריכלי, הקמה מאפס ושדרוג גינות פרטיות, גגות ומרפסות במרכז והשרון.
+        שילוב מדויק בין צמחייה חסכונית במים, תאורת אווירה ופינות ישיבה מרהיבות.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+        <a 
+          href="https://wa.me/972501234567?text=%D7%94%D7%99%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%92%D7%99%D7%A0%D7%94" 
+          target="_blank" 
+          rel="noopener"
+          class="w-full sm:w-auto px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-lg shadow-lg shadow-emerald-900/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3"
+        >
+          <i data-lucide="message-circle" class="w-5 h-5"></i>
+          <span>ייעוץ ישיר בוואטסאפ</span>
+        </a>
+        <a 
+          href="#gallery" 
+          class="w-full sm:w-auto px-8 py-4 rounded-full bg-sand/15 hover:bg-sand/25 border border-white/20 text-white font-bold text-lg backdrop-blur-sm transition-all flex items-center justify-center gap-2"
+        >
+          <i data-lucide="image" class="w-5 h-5 text-amber-300"></i>
+          <span>לצפייה בתיק העבודות</span>
+        </a>
+      </div>
+
+      <!-- Quick Trust Indicators -->
+      <div class="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div class="p-2">
+          <div class="text-3xl font-black text-amber-300 font-heading">350+</div>
+          <div class="text-sm text-sand-dark/80 mt-1">גינות שהוקמו בהצלחה</div>
+        </div>
+        <div class="p-2">
+          <div class="text-3xl font-black text-amber-300 font-heading">100%</div>
+          <div class="text-sm text-sand-dark/80 mt-1">עמידה בלוחות זמנים</div>
+        </div>
+        <div class="p-2">
+          <div class="text-3xl font-black text-amber-300 font-heading">5.0 ★</div>
+          <div class="text-sm text-sand-dark/80 mt-1">דירוג שביעות רצון גוגל</div>
+        </div>
+        <div class="p-2">
+          <div class="text-3xl font-black text-amber-300 font-heading">אחריות</div>
+          <div class="text-sm text-sand-dark/80 mt-1">מלאה על מערכות וצמחייה</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Before/After Section -->
+  <section id="before-after" class="py-20 bg-sand border-b border-sand-dark">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-terracotta font-extrabold text-sm tracking-wider uppercase">תוצאות בשטח</span>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-forest font-heading mt-2">
+          המהפך: מחצר מוזנחת לגן עדן פרטי
+        </h2>
+        <p class="text-sand-muted text-lg mt-4">
+          גררו את הידית ימינה ושמאלה כדי לראות איך הפכנו אדמת טרשים יבשה ומוזנחת בווילה בהוד השרון למרחב אירוח ירוק ומושלם.
+        </p>
+      </div>
+
+      <!-- Before-After Slider Container -->
+      <div class="relative max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-white ba-container aspect-[16/10] sm:aspect-[16/9]" id="baWrapper">
+        
+        <!-- After Image (Background layer) -->
+        <img 
+          src="https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=1600&q=80" 
+          alt="אחרי - גינה מעוצבת ירוקה" 
+          class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        >
+        <span class="absolute bottom-6 left-6 z-10 bg-forest/90 text-white font-bold text-sm px-4 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+          אחרי השדרוג 🌿
+        </span>
+
+        <!-- Before Image (Overlay clipped layer) -->
+        <div class="absolute inset-0 overflow-hidden" id="beforeImageWrapper" style="width: 50%;">
+          <img 
+            src="https://images.unsplash.com/photo-1592417817098-8f3d6910985c?auto=format&fit=crop&w=1600&q=80" 
+            alt="לפני - שטח אדמה יבש" 
+            class="absolute top-0 right-0 max-w-none h-full object-cover pointer-events-none"
+            id="beforeImg"
+          >
+          <span class="absolute bottom-6 right-6 z-10 bg-black/75 text-white font-bold text-sm px-4 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+            לפני העבודה 🏜️
+          </span>
+        </div>
+
+        <!-- Draggable Handle Bar -->
+        <div class="ba-slider-handle" id="baHandle" style="right: 50%;">
+          <div class="ba-handle-btn">
+            <i data-lucide="chevrons-left-right" class="w-5 h-5 text-white"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-6 text-sm text-sand-muted flex items-center justify-center gap-2">
+        <i data-lucide="mouse-pointer-click" class="w-4 h-4 text-terracotta"></i>
+        <span>החזיקו וגררו ימינה או שמאלה להשוואה</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Filterable Portfolio Gallery -->
+  <section id="gallery" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-terracotta font-extrabold text-sm tracking-wider uppercase">תיק עבודות</span>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-forest font-heading mt-2">
+            הפרויקטים האחרונים שלנו
+          </h2>
+        </div>
+        <p class="text-sand-muted max-w-md mt-4 md:mt-0 text-base">
+          כל גינה היא סיפור אישי שמתחיל באפיון צרכי המשפחה ומסתיים בחלום ירוק. לחצו על כל תמונה להגדלה ולפרטים.
+        </p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap gap-2.5 mb-10 pb-2 border-b border-sand-dark">
+        <button class="gallery-filter-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-forest text-white shadow-sm" data-category="all">
+          הכל (12)
+        </button>
+        <button class="gallery-filter-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-sand text-forest hover:bg-forest/10" data-category="establishment">
+          הקמת גינות מאפס
+        </button>
+        <button class="gallery-filter-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-sand text-forest hover:bg-forest/10" data-category="renovation">
+          שדרוג ושיקום גינות
+        </button>
+        <button class="gallery-filter-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-sand text-forest hover:bg-forest/10" data-category="grass-deck">
+          דשא סינתטי ודקים
+        </button>
+        <button class="gallery-filter-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-sand text-forest hover:bg-forest/10" data-category="rooftop">
+          גינות גג ומרפסות
+        </button>
+        <button class="gallery-filter-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-sand text-forest hover:bg-forest/10" data-category="lighting">
+          תאורת אווירה והשקיה
+        </button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="galleryGrid">
+        
+        <!-- Project Card 1 -->
+        <div class="gallery-card group bg-sand rounded-3xl overflow-hidden border border-sand-dark shadow-sm hover:shadow-xl transition-all duration-300" data-category="establishment">
+          <div class="relative overflow-hidden aspect-[4/3] cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1600&q=80', 'וילה יוקרתית ברעננה', 'הקמת גינה ים-תיכונית עם עצי זית עתיקים, שבילי אבן ותאורה שקועה.')">
+            <img 
+              src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800&q=80" 
+              alt="גינה ברעננה" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <div class="absolute inset-0 bg-forest/20 group-hover:bg-forest/0 transition-colors"></div>
+            <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-forest font-bold text-xs px-3 py-1 rounded-full shadow">
+              הקמה מאפס
+            </span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-1.5 text-xs text-terracotta font-bold mb-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+              <span>רעננה | שטח 280 מ״ר</span>
+            </div>
+            <h3 class="text-xl font-black text-forest font-heading mb-2">גינה ים-תיכונית עם עצי זית</h3>
+            <p class="text-sand-muted text-sm leading-relaxed mb-4">
+              <strong class="text-forest font-semibold">האתגר:</strong> שיפוע ניקוז בעייתי וחשיפה לרוחות חזקות.<br>
+              <strong class="text-forest font-semibold">התוצאה:</strong> טרסות אבן טבעית, מדשאה מוקפת עצי פרי וחיסכון של 40% במים.
+            </p>
+            <button onclick="openLightbox('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1600&q=80', 'וילה יוקרתית ברעננה', 'הקמת גינה ים-תיכונית עם עצי זית עתיקים, שבילי אבן ותאורה שקועה.')" class="text-forest font-bold text-sm flex items-center gap-1 group-hover:text-terracotta transition-colors">
+              <span>לצפייה בגודל מלא</span>
+              <i data-lucide="maximize-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="gallery-card group bg-sand rounded-3xl overflow-hidden border border-sand-dark shadow-sm hover:shadow-xl transition-all duration-300" data-category="grass-deck">
+          <div class="relative overflow-hidden aspect-[4/3] cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=1600&q=80', 'חצר פנאי בהרצליה פיתוח', 'דשא סינתטי איכותי משולב במשטח דק איפאה סביב בריכה.')">
+            <img 
+              src="https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=800&q=80" 
+              alt="דשא סינתטי ודק" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-forest font-bold text-xs px-3 py-1 rounded-full shadow">
+              דשא סינתטי ודקים
+            </span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-1.5 text-xs text-terracotta font-bold mb-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+              <span>הרצליה פיתוח | שטח 180 מ״ר</span>
+            </div>
+            <h3 class="text-xl font-black text-forest font-heading mb-2">שילוב דק איפאה ומדשאה ירוקה</h3>
+            <p class="text-sand-muted text-sm leading-relaxed mb-4">
+              <strong class="text-forest font-semibold">האתגר:</strong> שטח צל שמנע גידול דשא טבעי סביב בריכת השחייה.<br>
+              <strong class="text-forest font-semibold">התוצאה:</strong> דשא סינתטי פרימיום בעל מגע רך, עמיד בכלור ותיחום דק יוקרתי.
+            </p>
+            <button onclick="openLightbox('https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=1600&q=80', 'חצר פנאי בהרצליה פיתוח', 'דשא סינתטי איכותי משולב במשטח דק איפאה סביב בריכה.')" class="text-forest font-bold text-sm flex items-center gap-1 group-hover:text-terracotta transition-colors">
+              <span>לצפייה בגודל מלא</span>
+              <i data-lucide="maximize-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="gallery-card group bg-sand rounded-3xl overflow-hidden border border-sand-dark shadow-sm hover:shadow-xl transition-all duration-300" data-category="rooftop">
+          <div class="relative overflow-hidden aspect-[4/3] cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80', 'פנטהאוז בתל אביב', 'גן גג אקולוגי עם אדניות עץ מותאמות אישית והשקיה חכמה.')">
+            <img 
+              src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" 
+              alt="גינת גג" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-forest font-bold text-xs px-3 py-1 rounded-full shadow">
+              גינות גג ומרפסות
+            </span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-1.5 text-xs text-terracotta font-bold mb-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+              <span>תל אביב (קומת גג 14)</span>
+            </div>
+            <h3 class="text-xl font-black text-forest font-heading mb-2">נווה מדבר אורבני על הגג</h3>
+            <p class="text-sand-muted text-sm leading-relaxed mb-4">
+              <strong class="text-forest font-semibold">האתגר:</strong> מגבלות משקל קונסטרוקטיביות ורוחות עזות בקומה גבוהה.<br>
+              <strong class="text-forest font-semibold">התוצאה:</strong> אדניות קלות משקל עם תערובת שתילה ייעודית וצמחים עמידים במיוחד.
+            </p>
+            <button onclick="openLightbox('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80', 'פנטהאוז בתל אביב', 'גן גג אקולוגי עם אדניות עץ מותאמות אישית והשקיה חכמה.')" class="text-forest font-bold text-sm flex items-center gap-1 group-hover:text-terracotta transition-colors">
+              <span>לצפייה בגודל מלא</span>
+              <i data-lucide="maximize-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project Card 4 -->
+        <div class="gallery-card group bg-sand rounded-3xl overflow-hidden border border-sand-dark shadow-sm hover:shadow-xl transition-all duration-300" data-category="lighting">
+          <div class="relative overflow-hidden aspect-[4/3] cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80', 'תאורת גן אווירתית ברמת השרון', 'פרויקט תאורת גן במתח נמוך המבליט עצי נוי ופינות ישיבה.')">
+            <img 
+              src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" 
+              alt="תאורת גן" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-forest font-bold text-xs px-3 py-1 rounded-full shadow">
+              תאורת גן
+            </span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-1.5 text-xs text-terracotta font-bold mb-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+              <span>רמת השרון</span>
+            </div>
+            <h3 class="text-xl font-black text-forest font-heading mb-2">תאורת אווירה פסטורלית ללילה</h3>
+            <p class="text-sand-muted text-sm leading-relaxed mb-4">
+              <strong class="text-forest font-semibold">האתגר:</strong> החצר הייתה חשוכה ולא שמישה בשעות הערב.<br>
+              <strong class="text-forest font-semibold">התוצאה:</strong> מערכת LED מתח נמוך 12V מוגנת מים עם ספוטים חמים לעצי פרי.
+            </p>
+            <button onclick="openLightbox('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80', 'תאורת גן אווירתית ברמת השרון', 'פרויקט תאורת גן במתח נמוך המבליט עצי נוי ופינות ישיבה.')" class="text-forest font-bold text-sm flex items-center gap-1 group-hover:text-terracotta transition-colors">
+              <span>לצפייה בגודל מלא</span>
+              <i data-lucide="maximize-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project Card 5 -->
+        <div class="gallery-card group bg-sand rounded-3xl overflow-hidden border border-sand-dark shadow-sm hover:shadow-xl transition-all duration-300" data-category="renovation">
+          <div class="relative overflow-hidden aspect-[4/3] cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1592417817098-8f3d6910985c?auto=format&fit=crop&w=1600&q=80', 'שיקום גינה בכפר סבא', 'פינוי עשבייה שוטה, חידוש אדמה והתקנת צמחייה חסכונית.')">
+            <img 
+              src="https://images.unsplash.com/photo-1592417817098-8f3d6910985c?auto=format&fit=crop&w=800&q=80" 
+              alt="שיקום גינה" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-forest font-bold text-xs px-3 py-1 rounded-full shadow">
+              שדרוג ושיקום
+            </span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-1.5 text-xs text-terracotta font-bold mb-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+              <span>כפר סבא | שטח 220 מ״ר</span>
+            </div>
+            <h3 class="text-xl font-black text-forest font-heading mb-2">הצלת גינה ותיקה והפיכתה למודרנית</h3>
+            <p class="text-sand-muted text-sm leading-relaxed mb-4">
+              <strong class="text-forest font-semibold">האתגר:</strong> עשבייה פראית ומערכת צינורות ישנה ומפוצצת.<br>
+              <strong class="text-forest font-semibold">התוצאה:</strong> ריענון טוטאלי תוך 4 ימי עבודה עם מחשב השקיה Wi-Fi נשלט מהנייד.
+            </p>
+            <button onclick="openLightbox('https://images.unsplash.com/photo-1592417817098-8f3d6910985c?auto=format&fit=crop&w=1600&q=80', 'שיקום גינה בכפר סבא', 'פינוי עשבייה שוטה, חידוש אדמה והתקנת צמחייה חסכונית.')" class="text-forest font-bold text-sm flex items-center gap-1 group-hover:text-terracotta transition-colors">
+              <span>לצפייה בגודל מלא</span>
+              <i data-lucide="maximize-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project Card 6 -->
+        <div class="gallery-card group bg-sand rounded-3xl overflow-hidden border border-sand-dark shadow-sm hover:shadow-xl transition-all duration-300" data-category="establishment">
+          <div class="relative overflow-hidden aspect-[4/3] cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80', 'אחוזה בסביון', 'תכנון נוף טוטאלי כולל בריכת נוי אקולוגית עם מפלי מים.')">
+            <img 
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" 
+              alt="גינה בסביון" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-forest font-bold text-xs px-3 py-1 rounded-full shadow">
+              הקמה מאפס
+            </span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-1.5 text-xs text-terracotta font-bold mb-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+              <span>סביון | שטח 500 מ״ר</span>
+            </div>
+            <h3 class="text-xl font-black text-forest font-heading mb-2">גן טרופי עשיר עם אלמנט מים</h3>
+            <p class="text-sand-muted text-sm leading-relaxed mb-4">
+              <strong class="text-forest font-semibold">האתגר:</strong> יצירת פרטיות מוחלטת מגובלי החצר השכנים.<br>
+              <strong class="text-forest font-semibold">התוצאה:</strong> גדר חיה צפופה, עצי בננה ודקלים ובריכת דגי קוי מרהיבה.
+            </p>
+            <button onclick="openLightbox('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80', 'אחוזה בסביון', 'תכנון נוף טוטאלי כולל בריכת נוי אקולוגית עם מפלי מים.')" class="text-forest font-bold text-sm flex items-center gap-1 group-hover:text-terracotta transition-colors">
+              <span>לצפייה בגודל מלא</span>
+              <i data-lucide="maximize-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Gallery CTA -->
+      <div class="mt-14 text-center">
+        <a href="#contact" class="inline-flex items-center gap-3 bg-forest hover:bg-forest-light text-white font-bold px-8 py-4 rounded-full shadow-lg transition-all">
+          <i data-lucide="calendar" class="w-5 h-5 text-amber-300"></i>
+          <span>רוצים פרויקט דומה אצלכם בחצר? לחצו כאן לשיחת ייעוץ</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section id="services" class="py-20 bg-sand">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-terracotta font-extrabold text-sm tracking-wider uppercase">מעטפת מקצועית שלמה</span>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-forest font-heading mt-2">
+          מה אנחנו מביאים לחצר שלכם?
+        </h2>
+        <p class="text-sand-muted text-lg mt-4">
+          פתרון מלא תחת קורת גג אחת – ללא קבלני משנה וללא פשרות על איכות החומרים.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Service 1 -->
+        <div class="bg-white p-8 rounded-3xl border border-sand-dark shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-forest-soft text-forest flex items-center justify-center mb-6">
+            <i data-lucide="compass" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-black text-forest font-heading mb-3">תכנון והקמת גינות מאפס</h3>
+          <p class="text-sand-muted leading-relaxed text-sm">
+            תוכניות פיתוח מותאמות אישית, בחירת צמחים נכונה לפי תנאי שמש ואקלים מקומי, ויישור קרקע מדויק המבטיח ניקוז מים תקין.
+          </p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="bg-white p-8 rounded-3xl border border-sand-dark shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center mb-6">
+            <i data-lucide="layers" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-black text-forest font-heading mb-3">דשא סינתטי, דקים וחיפויי קרקע</h3>
+          <p class="text-sand-muted leading-relaxed text-sm">
+            התקנה מקצועית של דשא סינתטי צפוף ועמיד UV, דקים מעץ איפאה/אורן/סינתטי, תיחום חלוקי נחל וטוף למראה נקי וללא בוץ.
+          </p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="bg-white p-8 rounded-3xl border border-sand-dark shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-blue-100 text-blue-800 flex items-center justify-center mb-6">
+            <i data-lucide="droplet" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-black text-forest font-heading mb-3">מערכות השקיה ודישון חכמות</h3>
+          <p class="text-sand-muted leading-relaxed text-sm">
+            מחשבי השקיה עם קישוריות Wi-Fi לשליטה מהסמארטפון, טפטוף מדושן ושסתומי אל-חזור שמספקים חיסכון דרסטי בחשבון המים.
+          </p>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="bg-white p-8 rounded-3xl border border-sand-dark shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center mb-6">
+            <i data-lucide="sun-medium" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-black text-forest font-heading mb-3">תאורת גן אווירתית במתח נמוך</h3>
+          <p class="text-sand-muted leading-relaxed text-sm">
+            גופי תאורת LED עמידים לחלוטין במים (IP68), תאורת הדגשה לעצים, שבילים מוארים ופינות ישיבה לאווירה יוקרתית בכל ערב.
+          </p>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="bg-white p-8 rounded-3xl border border-sand-dark shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-orange-100 text-terracotta flex items-center justify-center mb-6">
+            <i data-lucide="scissors" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-black text-forest font-heading mb-3">גיזום עצים ושיקום גינות מוזנחות</h3>
+          <p class="text-sand-muted leading-relaxed text-sm">
+            גיזום מקצועי של עצי פרי ונוי, כריתות מורכבות, אוורור דשא, הדברת מזיקים וחידוש קרקעות שאיבדו את הפוריות שלהן.
+          </p>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="bg-white p-8 rounded-3xl border border-sand-dark shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-stone-200 text-stone-800 flex items-center justify-center mb-6">
+            <i data-lucide="building-2" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-black text-forest font-heading mb-3">אחזקה שוטפת לבתים וועדים</h3>
+          <p class="text-sand-muted leading-relaxed text-sm">
+            תוכניות טיפול תקופתיות: כיסוח, ניקוי, דישון, בדיקת מחשבי השקיה וטיפול בצמחים כדי שהחצר תיראה במיטבה 365 ימים בשנה.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Work Process Section -->
+  <section id="process" class="py-20 bg-forest text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-amber-300 font-extrabold text-sm tracking-wider uppercase">פשוט, שקוף ומדויק</span>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black font-heading mt-2">
+          4 שלבים לגינת החלומות שלכם
+        </h2>
+        <p class="text-sand-dark/80 text-lg mt-3">
+          אנחנו דואגים לכל הפרטים מראש כדי שתיהנו מתהליך רגוע, בטוח וללא הפתעות בתקציב.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+        
+        <!-- Step 1 -->
+        <div class="relative bg-forest-dark/50 p-6 rounded-3xl border border-white/10 backdrop-blur-sm">
+          <div class="w-12 h-12 rounded-2xl bg-amber-400 text-forest font-black text-xl flex items-center justify-center mb-4">
+            01
+          </div>
+          <h3 class="text-xl font-bold mb-2 font-heading">שיחת ייעוץ והיכרות</h3>
+          <p class="text-sand-dark/70 text-sm leading-relaxed">
+            מבררים את הרצונות, התקציב וסגנון החיים שלכם – האם אתם מחפשים גינה לאירוח, גינה עם מינימום תחזוקה או מרחב משחקים לילדים.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative bg-forest-dark/50 p-6 rounded-3xl border border-white/10 backdrop-blur-sm">
+          <div class="w-12 h-12 rounded-2xl bg-amber-400 text-forest font-black text-xl flex items-center justify-center mb-4">
+            02
+          </div>
+          <h3 class="text-xl font-bold mb-2 font-heading">סיור בשטח ותוכנית עבודה</h3>
+          <p class="text-sand-dark/70 text-sm leading-relaxed">
+            מגיעים לחצר, מודדים, בוחנים כיווני שמש, סוג אדמה ושיפועים. מכינים הצעת מחיר מפורטת ללא אותיות קטנות.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative bg-forest-dark/50 p-6 rounded-3xl border border-white/10 backdrop-blur-sm">
+          <div class="w-12 h-12 rounded-2xl bg-amber-400 text-forest font-black text-xl flex items-center justify-center mb-4">
+            03
+          </div>
+          <h3 class="text-xl font-bold mb-2 font-heading">ביצוע מקצועי ונקי</h3>
+          <p class="text-sand-dark/70 text-sm leading-relaxed">
+            עבודה מהירה לפי לוח זמנים מוסכם. שימוש בציוד מתקדם וחומרים בתו תקן. אנחנו מקפידים על שטח עבודה מסודר ומכבד.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative bg-forest-dark/50 p-6 rounded-3xl border border-white/10 backdrop-blur-sm">
+          <div class="w-12 h-12 rounded-2xl bg-amber-400 text-forest font-black text-xl flex items-center justify-center mb-4">
+            04
+          </div>
+          <h3 class="text-xl font-bold mb-2 font-heading">מסירה, הדרכה ואחריות</h3>
+          <p class="text-sand-dark/70 text-sm leading-relaxed">
+            סיור מסירה עם הסבר מלא על תפעול מערכת ההשקיה והטיפול בצמחים, בצירוף תעודת אחריות מקיפה.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-20 bg-sand">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-terracotta font-extrabold text-sm tracking-wider uppercase">מילים חמות</span>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-forest font-heading mt-2">
+          מה הלקוחות שלנו מספרים?
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Review 1 -->
+        <div class="bg-white p-8 rounded-3xl border border-sand-dark shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-400 mb-4">
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            </div>
+            <p class="text-forest/80 text-base leading-relaxed mb-6 font-normal">
+              ״הגענו ל'ירוק עד' אחרי ששני גננים קודמים הבטיחו הרים וגבעות והשאירו חצר צהובה. הצוות שיקם לנו את כל הגינה תוך שבוע! עמידה מדהימה בזמנים, שירות מעל ומעבר והתוצאה פשוט חלומית.״
+            </p>
+          </div>
+          <div class="flex items-center gap-4 pt-4 border-t border-sand-dark">
+            <div class="w-12 h-12 rounded-full bg-forest text-white font-bold flex items-center justify-center">
+              ד״ל
+            </div>
+            <div>
+              <div class="font-bold text-forest">דנה ולביא שמעוני</div>
+              <div class="text-xs text-sand-muted">רעננה | הקמת גינה פרטית</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-white p-8 rounded-3xl border border-sand-dark shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-400 mb-4">
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            </div>
+            <p class="text-forest/80 text-base leading-relaxed mb-6 font-normal">
+              ״חיפשתי מישהו שיעשה עבודה נקייה עם דק איפאה ותאורת גינה שתחזיק שנים. הדיוק בפרטים, הבחירה של הצמחים שלא דורשים המון טיפול והשקט הנפשי שקיבלנו היו שווים כל שקל. ממליץ בחום!״
+            </p>
+          </div>
+          <div class="flex items-center gap-4 pt-4 border-t border-sand-dark">
+            <div class="w-12 h-12 rounded-full bg-forest text-white font-bold flex items-center justify-center">
+              י״ק
+            </div>
+            <div>
+              <div class="font-bold text-forest">יוסי קפלן</div>
+              <div class="text-xs text-sand-muted">הוד השרון | שדרוג דק ותאורה</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-white p-8 rounded-3xl border border-sand-dark shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-400 mb-4">
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            </div>
+            <p class="text-forest/80 text-base leading-relaxed mb-6 font-normal">
+              ״גינת הגג בפנטהאוז שלנו הייתה אתגר אמיתי בגלל רוחות וחום ישיר. הם ידעו בדיוק איזה צמחים מתאימים, הרכיבו אדניות יפהפיות ומערכת ממוחשבת. היום המרפסת היא החדר האהוב עלינו.״
+            </p>
+          </div>
+          <div class="flex items-center gap-4 pt-4 border-t border-sand-dark">
+            <div class="w-12 h-12 rounded-full bg-forest text-white font-bold flex items-center justify-center">
+              מ״כ
+            </div>
+            <div>
+              <div class="font-bold text-forest">מיכל כרמי</div>
+              <div class="text-xs text-sand-muted">תל אביב | גינת גג ומרפסת</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact & Lead Generation Section -->
+  <section id="contact" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left Column: Form & Direct Contact -->
+        <div class="lg:col-span-7 bg-sand p-8 sm:p-10 rounded-3xl border border-sand-dark shadow-lg">
+          <span class="text-terracotta font-extrabold text-sm tracking-wider uppercase">בואו נתחיל</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-forest font-heading mt-1 mb-3">
+            תיאום פגישת ייעוץ והצעת מחיר
+          </h2>
+          <p class="text-sand-muted text-base mb-8">
+            מלאו את הפרטים וההודעה תועבר ישירות לוואטסאפ שלנו למענה מהיר תוך זמן קצר:
+          </p>
+
+          <form id="leadForm" class="space-y-5" onsubmit="handleLeadSubmit(event)">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="fullName" class="block text-sm font-bold text-forest mb-1.5">שם מלא *</label>
+                <input 
+                  type="text" 
+                  id="fullName" 
+                  required 
+                  placeholder="ישראל ישראלי" 
+                  class="w-full px-4 py-3 rounded-xl border border-sand-dark bg-white focus:outline-none focus:ring-2 focus:ring-forest text-forest placeholder-gray-400"
+                >
+              </div>
+              <div>
+                <label for="phoneNumber" class="block text-sm font-bold text-forest mb-1.5">טלפון נייד *</label>
+                <input 
+                  type="tel" 
+                  id="phoneNumber" 
+                  required 
+                  placeholder="050-0000000" 
+                  class="w-full px-4 py-3 rounded-xl border border-sand-dark bg-white focus:outline-none focus:ring-2 focus:ring-forest text-forest placeholder-gray-400"
+                >
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="city" class="block text-sm font-bold text-forest mb-1.5">יישוב / עיר *</label>
+                <input 
+                  type="text" 
+                  id="city" 
+                  required 
+                  placeholder="למשל: רעננה, הרצליה, כ״ס" 
+                  class="w-full px-4 py-3 rounded-xl border border-sand-dark bg-white focus:outline-none focus:ring-2 focus:ring-forest text-forest placeholder-gray-400"
+                >
+              </div>
+              <div>
+                <label for="serviceType" class="block text-sm font-bold text-forest mb-1.5">סוג הפרויקט</label>
+                <select 
+                  id="serviceType" 
+                  class="w-full px-4 py-3 rounded-xl border border-sand-dark bg-white focus:outline-none focus:ring-2 focus:ring-forest text-forest"
+                >
+                  <option value="הקמת גינה חדשה מאפס">הקמת גינה חדשה מאפס</option>
+                  <option value="שדרוג ושיקום גינה קיימת">שדרוג ושיקום גינה קיימת</option>
+                  <option value="דשא סינתטי או דק">דשא סינתטי או דק</option>
+                  <option value="גינת גג או מרפסת">גינת גג או מרפסת</option>
+                  <option value="תאורת גן ומערכת השקיה">תאורת גן ומערכת השקיה</option>
+                  <option value="אחר">אחר</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="gardenSize" class="block text-sm font-bold text-forest mb-1.5">גודל משוער של השטח (במ״ר)</label>
+              <input 
+                type="text" 
+                id="gardenSize" 
+                placeholder="למשל: כ-100 מ״ר" 
+                class="w-full px-4 py-3 rounded-xl border border-sand-dark bg-white focus:outline-none focus:ring-2 focus:ring-forest text-forest placeholder-gray-400"
+              >
+            </div>
+
+            <div>
+              <label for="comments" class="block text-sm font-bold text-forest mb-1.5">כמה מילים על החצר ומה שתרצו לעשות</label>
+              <textarea 
+                id="comments" 
+                rows="3" 
+                placeholder="ספרו לנו על הצרכים שלכם (למשל: מתאים לכלב/ילדים, צל מלא, דגש על תחזוקה קלה...)" 
+                class="w-full px-4 py-3 rounded-xl border border-sand-dark bg-white focus:outline-none focus:ring-2 focus:ring-forest text-forest placeholder-gray-400"
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full py-4 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-black text-lg shadow-lg shadow-terracotta/25 transition-all flex items-center justify-center gap-2"
+            >
+              <i data-lucide="send" class="w-5 h-5"></i>
+              <span>שלח פרטים בוואטסאפ לתיאום פגישה</span>
+            </button>
+            <div id="formFeedback" class="text-center font-bold text-sm text-forest hidden">
+              מעביר אותך לוואטסאפ עם הפרטים...
+            </div>
+          </form>
+
+        </div>
+
+        <!-- Right Column: FAQs & Direct details -->
+        <div class="lg:col-span-5 space-y-8">
+          
+          <!-- Direct Contact Card -->
+          <div class="bg-forest-soft p-6 sm:p-8 rounded-3xl border border-forest/10">
+            <h3 class="text-xl font-black text-forest font-heading mb-4">מעדיפים לדבר ישירות?</h3>
+            <p class="text-sand-muted text-sm mb-6 leading-relaxed">
+              נשמח לענות על כל שאלה, לתת הערכת סדרי גודל ולתאם סיור שטח ללא התחייבות.
+            </p>
+            <div class="space-y-4">
+              <a href="tel:0501234567" class="flex items-center gap-3 text-forest font-bold hover:text-terracotta transition-colors">
+                <div class="w-10 h-10 rounded-full bg-forest text-white flex items-center justify-center shadow-sm">
+                  <i data-lucide="phone" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="block text-xs text-sand-muted">חיוג ישיר למנהל הפרויקטים</span>
+                  <span class="text-lg">050-123-4567</span>
+                </div>
+              </a>
+
+              <a href="https://wa.me/972501234567" target="_blank" rel="noopener" class="flex items-center gap-3 text-forest font-bold hover:text-terracotta transition-colors">
+                <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-sm">
+                  <i data-lucide="message-circle" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="block text-xs text-sand-muted">זמינים גם בהודעות</span>
+                  <span class="text-lg">וואטסאפ מהיר (מענה תוך שעה)</span>
+                </div>
+              </a>
+
+              <div class="flex items-center gap-3 text-forest font-bold">
+                <div class="w-10 h-10 rounded-full bg-forest/20 text-forest flex items-center justify-center">
+                  <i data-lucide="map-pin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="block text-xs text-sand-muted">אזורי פעילות</span>
+                  <span class="text-base">גוש דן, בקעת אונו, השרון והסביבה</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="space-y-3">
+            <h3 class="text-xl font-black text-forest font-heading mb-4">שאלות נפוצות</h3>
+            
+            <div class="faq-item border border-sand-dark rounded-2xl overflow-hidden bg-sand">
+              <button class="faq-toggle w-full p-4 text-right font-bold text-forest flex items-center justify-between gap-4">
+                <span>כמה זמן לוקח להקים גינה ממוצעת?</span>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-terracotta transition-transform duration-300"></i>
+              </button>
+              <div class="faq-content hidden px-4 pb-4 text-sm text-sand-muted leading-relaxed">
+                רוב הגינות הפרטיות (100–300 מ״ר) מוקמות תוך 3 עד 7 ימי עבודה מלאים, מרגע אישור התוכנית ועד מסירת השטח הנקי.
+              </div>
+            </div>
+
+            <div class="faq-item border border-sand-dark rounded-2xl overflow-hidden bg-sand">
+              <button class="faq-toggle w-full p-4 text-right font-bold text-forest flex items-center justify-between gap-4">
+                <span>האם אתם מספקים אחריות על הצמחים?</span>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-terracotta transition-transform duration-300"></i>
+              </button>
+              <div class="faq-content hidden px-4 pb-4 text-sm text-sand-muted leading-relaxed">
+                בהחלט! אנו מעניקים אחריות מלאה על קליטת כל הצמחים והעצים, ואחריות יצרן מורחבת על מערכות ההשקיה, תאורת ה-LED והדשא הסינתטי.
+              </div>
+            </div>
+
+            <div class="faq-item border border-sand-dark rounded-2xl overflow-hidden bg-sand">
+              <button class="faq-toggle w-full p-4 text-right font-bold text-forest flex items-center justify-between gap-4">
+                <span>מה היתרון של תאורה במתח נמוך?</span>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-terracotta transition-transform duration-300"></i>
+              </button>
+              <div class="faq-content hidden px-4 pb-4 text-sm text-sand-muted leading-relaxed">
+                מערכות 12V בטוחות ב-100% למגע של ילדים ובעלי חיים גם אם חוט נחשף, אינן מושפעות מרטיבות וחסכוניות ביותר בחשמל.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-forest-dark text-sand-dark/80 pt-16 pb-12 border-t border-forest-light/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        
+        <!-- Brand Info -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-forest-light flex items-center justify-center text-white">
+              <i data-lucide="sprout" class="w-6 h-6 text-emerald-300"></i>
+            </div>
+            <span class="text-2xl font-black text-white font-heading">ירוק עד</span>
+          </div>
+          <p class="text-sm leading-relaxed text-sand-dark/70">
+            תכנון, הקמה ועיצוב גינות יוקרה ומרפסות נוף. יצירת מרחבים ירוקים שנשארים יפים, בריאים וחסכוניים לאורך שנים.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white font-bold text-base mb-4 font-heading">ניווט מהיר</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#about" class="hover:text-amber-300 transition-colors">אודותינו</a></li>
+            <li><a href="#gallery" class="hover:text-amber-300 transition-colors">תיק עבודות וגלריה</a></li>
+            <li><a href="#services" class="hover:text-amber-300 transition-colors">סל השירותים</a></li>
+            <li><a href="#before-after" class="hover:text-amber-300 transition-colors">השוואת לפני ואחרי</a></li>
+            <li><a href="#contact" class="hover:text-amber-300 transition-colors">הצעת מחיר חינם</a></li>
+          </ul>
+        </div>
+
+        <!-- Service Areas (Crucial for Local SEO) -->
+        <div>
+          <h4 class="text-white font-bold text-base mb-4 font-heading">אזורי שירות מרכזיים</h4>
+          <ul class="space-y-2 text-sm text-sand-dark/70">
+            <li>הרצליה, רמת השרון ורעננה</li>
+            <li>כפר סבא, הוד השרון ויישובי דרום השרון</li>
+            <li>תל אביב, רמת גן, גבעתיים וסביון</li>
+            <li>ראשון לציון, פתח תקווה וקריית אונו</li>
+          </ul>
+        </div>
+
+        <!-- Hours & Contact -->
+        <div>
+          <h4 class="text-white font-bold text-base mb-4 font-heading">שעות פעילות</h4>
+          <ul class="space-y-2 text-sm text-sand-dark/70">
+            <li>ימים א׳ - ה׳: 07:00 – 19:00</li>
+            <li>יום ו׳ וערבי חג: 07:00 – 14:00</li>
+            <li>שבת: סגור</li>
+            <li class="pt-2 text-amber-300 font-semibold">טלפון: 050-123-4567</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-white/10 text-center text-xs text-sand-dark/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          © 2026 כל הזכויות שמורות ל-<strong>ירוק עד גינון ופיתוח נוף</strong>.
+        </div>
+        <div>
+          נבנה עבור ביצועים מהירים ואחסון ב-GitHub Pages 🚀
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating Contact Buttons (Mobile-first essentials) -->
+  <div class="fixed bottom-6 left-6 z-50 flex flex-col gap-3">
+    <!-- WhatsApp Floating Action Button -->
+    <a 
+      href="https://wa.me/972501234567?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%95%D7%A9%D7%93%D7%A8%D7%95%D7%92%20%D7%94%D7%92%D7%99%D7%A0%D7%94" 
+      target="_blank" 
+      rel="noopener"
+      aria-label="פתח שיחת וואטסאפ"
+      class="w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shadow-xl shadow-emerald-900/30 hover:scale-110 active:scale-95 transition-all duration-300 relative group"
+    >
+      <i data-lucide="message-circle" class="w-7 h-7"></i>
+      <span class="absolute right-16 bg-forest text-white text-xs font-bold px-3 py-1.5 rounded-xl whitespace-nowrap shadow-md hidden group-hover:block transition-all">
+        ייעוץ ישיר בוואטסאפ
+      </span>
+    </a>
+
+    <!-- Direct Phone Call Button -->
+    <a 
+      href="tel:0501234567" 
+      aria-label="חייג עכשיו"
+      class="w-14 h-14 rounded-full bg-terracotta hover:bg-terracotta-dark text-white flex items-center justify-center shadow-xl shadow-terracotta/30 hover:scale-110 active:scale-95 transition-all duration-300 relative group"
+    >
+      <i data-lucide="phone" class="w-6 h-6"></i>
+      <span class="absolute right-16 bg-forest text-white text-xs font-bold px-3 py-1.5 rounded-xl whitespace-nowrap shadow-md hidden group-hover:block transition-all">
+        חיוג מהיר למוקד
+      </span>
+    </a>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-black/90 modal-backdrop flex items-center justify-center p-4">
+    <div class="relative max-w-5xl w-full bg-forest-dark rounded-3xl overflow-hidden shadow-2xl border border-white/20">
+      
+      <!-- Close Button -->
+      <button onclick="closeLightbox()" aria-label="סגור חלון" class="absolute top-4 left-4 z-10 w-11 h-11 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition-colors">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Modal Image Container -->
+      <div class="max-h-[70vh] flex items-center justify-center bg-black/50 overflow-hidden">
+        <img id="lightboxImg" src="" alt="תצוגת פרויקט" class="w-auto h-auto max-h-[70vh] object-contain">
+      </div>
+
+      <!-- Modal Captions -->
+      <div class="p-6 bg-forest-dark text-white">
+        <h4 id="lightboxTitle" class="text-2xl font-black font-heading mb-1 text-amber-200"></h4>
+        <p id="lightboxDesc" class="text-sand-dark/80 text-sm leading-relaxed"></p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. Mobile Menu Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on clicking any navigation link
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // 2. Interactive Before/After Slider Engine
+    const baWrapper = document.getElementById('baWrapper');
+    const beforeImageWrapper = document.getElementById('beforeImageWrapper');
+    const baHandle = document.getElementById('baHandle');
+    const beforeImg = document.getElementById('beforeImg');
+
+    function syncBeforeImageDimensions() {
+      if (baWrapper && beforeImg) {
+        beforeImg.style.width = baWrapper.offsetWidth + 'px';
+      }
+    }
+    window.addEventListener('resize', syncBeforeImageDimensions);
+    window.addEventListener('load', syncBeforeImageDimensions);
+
+    let isSliding = false;
+
+    function updateSliderPosition(clientX) {
+      const rect = baWrapper.getBoundingClientRect();
+      let offsetX = clientX - rect.left;
+      if (offsetX < 0) offsetX = 0;
+      if (offsetX > rect.width) offsetX = rect.width;
+
+      const percentage = (offsetX / rect.width) * 100;
+      // In RTL layout, calculate from the right edge
+      const rightPercentage = 100 - percentage;
+
+      beforeImageWrapper.style.width = percentage + '%';
+      baHandle.style.right = rightPercentage + '%';
+    }
+
+    if (baWrapper) {
+      baWrapper.addEventListener('mousedown', (e) => {
+        isSliding = true;
+        updateSliderPosition(e.clientX);
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!isSliding) return;
+        updateSliderPosition(e.clientX);
+      });
+      window.addEventListener('mouseup', () => {
+        isSliding = false;
+      });
+
+      // Touch interactions for mobile screens
+      baWrapper.addEventListener('touchstart', (e) => {
+        isSliding = true;
+        if (e.touches[0]) updateSliderPosition(e.touches[0].clientX);
+      }, { passive: true });
+      window.addEventListener('touchmove', (e) => {
+        if (!isSliding) return;
+        if (e.touches[0]) updateSliderPosition(e.touches[0].clientX);
+      }, { passive: true });
+      window.addEventListener('touchend', () => {
+        isSliding = false;
+      });
+    }
+
+    // 3. Category Filter Logic for Portfolio Cards
+    const filterButtons = document.querySelectorAll('.gallery-filter-btn');
+    const galleryCards = document.querySelectorAll('.gallery-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle active styling
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-forest', 'text-white', 'shadow-sm');
+          b.classList.add('bg-sand', 'text-forest');
+        });
+        btn.classList.add('bg-forest', 'text-white', 'shadow-sm');
+        btn.classList.remove('bg-sand', 'text-forest');
+
+        const category = btn.getAttribute('data-category');
+
+        galleryCards.forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 4. Lightbox Modal Functions
+    function openLightbox(src, title, desc) {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      const titleEl = document.getElementById('lightboxTitle');
+      const descEl = document.getElementById('lightboxDesc');
+
+      img.src = src;
+      titleEl.textContent = title;
+      descEl.textContent = desc;
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal on escape key or backdrop click
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+    document.getElementById('lightboxModal').addEventListener('click', (e) => {
+      if (e.target.id === 'lightboxModal') closeLightbox();
+    });
+
+    // 5. FAQ Accordion Toggle
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('svg');
+        const isOpen = !content.classList.contains('hidden');
+
+        // Close others
+        document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+        document.querySelectorAll('.faq-toggle svg').forEach(i => i.classList.remove('rotate-180'));
+
+        if (!isOpen) {
+          content.classList.remove('hidden');
+          if (icon) icon.classList.add('rotate-180');
+        }
+      });
+    });
+
+    // 6. Lead Generation Form Handler (Transfers inputs to WhatsApp)
+    function handleLeadSubmit(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phoneNumber').value.trim();
+      const city = document.getElementById('city').value.trim();
+      const service = document.getElementById('serviceType').value;
+      const size = document.getElementById('gardenSize').value.trim();
+      const notes = document.getElementById('comments').value.trim();
+
+      const feedback = document.getElementById('formFeedback');
+      feedback.classList.remove('hidden');
+
+      // WhatsApp target number
+      const targetPhone = "972501234567";
+
+      // Build structured message
+      let message = `שלום, השארתי פנייה באתר ירוק עד:\n`;
+      message += `👤 *שם:* ${name}\n`;
+      message += `📞 *טלפון:* ${phone}\n`;
+      message += `📍 *עיר/יישוב:* ${city}\n`;
+      message += `🌱 *סוג שירות:* ${service}\n`;
+      if (size) message += `📐 *גודל משוער:* ${size}\n`;
+      if (notes) message += `📝 *פרטים נוספים:* ${notes}\n`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodedMessage}`;
+
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+      }, 500);
+    }
+  </script>
+</body>
+</html>
